@@ -1,6 +1,6 @@
 import { Button, Container, Stack, Heading } from '@chakra-ui/react'
 import Swal from 'sweetalert2'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import { createAssessment } from '../../data/assessments'
 import { Formik } from 'formik'
 import FormInput from '../../components/FormInput'
@@ -8,7 +8,7 @@ import assessmentValidation from '../../validations/assessmentValidation'
 import FormikError from '../../components/FormikError'
 
 const valoracion = () => {
-	const router = useRouter()
+	
 	return (
 		<Container maxW="container.md">
 			<Heading textAlign={"center"} my={10}>Crear Valoraciones</Heading>

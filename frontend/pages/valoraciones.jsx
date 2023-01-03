@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState as state, useEffect as effect} from 'react'
 import { Button, Container, Heading, HStack, Input, Stack, Table, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
 import { getAssessments } from '../data/assessments'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 
 const valoracion = () => {
 
-    const [assessments, setAssessments] = useState([{
+    const [assessments, setAssessments] = state([{
         id: '',
         controlservice: '',
         point: '',
         comment: '' 
     }])
-    const router = useRouter()
+    
 
     const contentTable = () => {
         return assessments.map(assessment => {
@@ -29,7 +29,7 @@ const valoracion = () => {
         })
     }
 
-    useEffect(() => {
+    effect(() => {
         getAssessments().then(res => {
             setAssessments(res.data)
         })

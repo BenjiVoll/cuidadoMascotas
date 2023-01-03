@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useState as state} from 'react'
 import { Button, Container, Heading, HStack, Stack, Text } from '@chakra-ui/react'
 import { createUser } from '../../data/users'
 import InputForm from '../../components/InputForm'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import { Formik } from 'formik'
 import userValidation from '../../validations/userValidation'
 
 const usuarios = () => {
 
-    const [user, setUser] = useState({
+    const [user, setUser] = state({
         name: '',
         age: '',
         email: '',
@@ -18,7 +18,7 @@ const usuarios = () => {
         role: '',
         pet: ''
     })
-    const router = useRouter()
+    
 
 
     return (

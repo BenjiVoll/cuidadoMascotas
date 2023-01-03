@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useState as state} from 'react'
 import { getControlServices } from '../../../data/controlServices'
 import { Button, Container, Heading, HStack, Stack, Text } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import ShowInfo from '../../../components/ShowInfo'
 
 export const getServerSideProps = async (context) => {
     try {
-        const response = await getControlService(context.query.controlServicio, localStorage.getItem('token'))
+        const response = await getControlServices(context.query.controlServicio, localStorage.getItem('token'))
         if (response.status === 200) {
             return {
                 props: {
@@ -31,8 +31,7 @@ export const getServerSideProps = async (context) => {
 }
 
 const editar = ({ data }) => {
-    const [controlService] = useState(data)
-    const router = useRouter()
+    const [controlService] = state(data)
 
     return (
         <Container maxW="container.xl" mt={10}>

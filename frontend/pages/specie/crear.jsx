@@ -1,17 +1,16 @@
-import { useState } from 'react'
+import { useState as state } from 'react'
 import { Button, Container, Heading, HStack, Stack, Text } from '@chakra-ui/react'
 import { createSpecie } from '../../data/species'
 import InputForm from '../../components/InputForm'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import { Formik } from 'formik'
 import specieValidation from '../../validations/specieValidation'
 
 const especies = () => {
 
-    const [specie, setSpecie] = useState({
+    const [specie, setSpecie] = state({
         name: ''
     })
-    const router = useRouter()
 
 
     return (

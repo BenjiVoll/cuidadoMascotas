@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useState as state } from 'react'
 import { Button, Container, Heading, HStack, Stack, Text } from '@chakra-ui/react'
 import { createPet } from '../../data/pets'
 import InputForm from '../../components/InputForm'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import { Formik } from 'formik'
 import petValidation from '../../validations/petValidation'
 
 const mascotas = () => {
 
-    const [pet, setPet] = useState({
+    const [pet, setPet] = state({
         name: '',
         race: '',
         diseases: '',
@@ -17,7 +17,6 @@ const mascotas = () => {
         weight: '',
         colour: ''
     })
-    const router = useRouter()
 
 
     return (

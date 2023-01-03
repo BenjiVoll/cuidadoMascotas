@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState as state, useEffect as effect } from 'react'
 import { Button, Container, Heading, HStack, Input, Stack, Table, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
 import { getUsers } from '../data/users'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 
 const usuarios = () => {
 
-    const [users, setUsers] = useState([{
+    const [users, setUsers] = state([{
         id: '',
         name: '',
         age: '',
@@ -16,7 +16,7 @@ const usuarios = () => {
         role: '',
         pet: '',
     }])
-    const router = useRouter()
+    
 
     const contentTable = () => {
         return users.map(user => {
@@ -41,7 +41,7 @@ const usuarios = () => {
         })
     }
 
-    useEffect(() => {
+    effect(() => {
         getUsers().then(res => {
             setUsers(res.data)
         })

@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState as state} from 'react'
 import { getSpecie, updateSpecie } from '../../../data/species'
 import { Button, Container, Heading, HStack, Stack } from '@chakra-ui/react'
 import InputForm from '../../../components/InputForm'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import Swal from 'sweetalert2'
 
 export const getServerSideProps = async (context) => {
@@ -15,8 +15,7 @@ export const getServerSideProps = async (context) => {
 }
 
 const editar = ({ data }) => {
-    const [specie, setSpecie] = useState(data)
-    const router = useRouter()
+    const [specie, setSpecie] = state(data)
     const { especie } = router.query
 
     const handleChange = (e) => {

@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState as state } from 'react'
 import { Button, Container, Heading, HStack, Input, Stack, Table, Thead, Tr, Td, Th, Tbody, FormControl, FormLabel } from '@chakra-ui/react'
-import { getPets } from '../data/pets'
-import { getBenefits } from '../data/benefits'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import { login } from '../data/user'
 
 const index = () => {
 
-	const [rut, setRUT] = useState('')
-	const router = useRouter()
+	const [rut, setRUT] = state('')
 
 	const handleChange = (e) => {
 		setRUT(e.target.value)

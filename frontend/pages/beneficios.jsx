@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState as state, useEffect as effect } from 'react'
 import { Button, Container, Heading, HStack, Input, Stack, Table, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
 import { getBenefits } from '../data/benefits'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 
 const beneficios = () => {
 
-    const [benefits, setBenefits] = useState([{
+    const [benefits, setBenefits] = state([{
         id: '',
         name: '',
     }])
-    const router = useRouter()
 
     const contentTable = () => {
         return benefits.map(benefit => {
@@ -26,7 +25,7 @@ const beneficios = () => {
         })
     }
 
-    useEffect(() => {
+    effect(() => {
         getBenefits().then(res => {
             setBenefits(res.data)
         })

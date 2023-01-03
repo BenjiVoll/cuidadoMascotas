@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState as state, useEffect as effect } from 'react'
 import { Button, Container, Heading, HStack, Input, Stack, Table, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
 import { getControlServices } from '../data/controlServices'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 
 const controlServicio = () => {
 
-    const [controlServices, setControlServices] = useState([{
+    const [controlServices, setControlServices] = state([{
         id: '',
         benefit: '',
         entrydate: '',
@@ -16,7 +16,6 @@ const controlServicio = () => {
         namewithdraw: '',
         state: '',
     }])
-    const router = useRouter()
 
     const contentTable = () => {
         return controlServices.map(controlService => {
@@ -41,7 +40,7 @@ const controlServicio = () => {
         })
     }
 
-    useEffect(() => {
+    effect(() => {
         getControlServices().then(res => {
             setControlServices(res.data)
         })

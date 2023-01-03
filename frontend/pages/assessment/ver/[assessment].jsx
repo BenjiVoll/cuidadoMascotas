@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState as state } from 'react'
 import { getAssessment } from '../../../data/assessments'
 import { Button, Container, Heading, HStack, Stack, Text } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import ShowInfo from '../../../components/ShowInfo'
 
 export const getServerSideProps = async (context) => {
@@ -15,8 +15,8 @@ export const getServerSideProps = async (context) => {
         }
 }
 const editar = ({ data }) => {
-    const [assessment] = useState(data)
-    const router = useRouter()
+    const [assessment] = state(data)
+    
 
     return (
         <Container maxW="container.xl" mt={10}>

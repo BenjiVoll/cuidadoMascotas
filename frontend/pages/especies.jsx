@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState as state, useEffect as effect } from 'react'
 import { Button, Container, Heading, HStack, Input, Stack, Table, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
 import { getSpecies } from '../data/species'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 
 const especies = () => {
 
-    const [species, setSpecies] = useState([{
+    const [species, setSpecies] = state([{
         id: '',
         name: '',
     }])
-    const router = useRouter()
 
     const contentTable = () => {
         return species.map(specie => {
@@ -26,7 +25,7 @@ const especies = () => {
         })
     }
 
-    useEffect(() => {
+    effect(() => {
         getSpecies().then(res => {
             setSpecies(res.data)
         })

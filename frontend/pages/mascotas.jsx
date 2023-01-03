@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState as state, useEffect as effect } from 'react'
 import { Button, Container, Heading, HStack, Input, Stack, Table, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
 import { getPets } from '../data/pets'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 
 const mascotas = () => {
 
-    const [pets, setPets] = useState([{
+    const [pets, setPets] = state([{
         id: '',
         user: '',
         name: '',
@@ -17,7 +17,6 @@ const mascotas = () => {
         colour: '',
         species: '',
     }])
-    const router = useRouter()
 
     const contentTable = () => {
         return pets.map(pet => {
@@ -41,7 +40,7 @@ const mascotas = () => {
         })
     }
 
-    useEffect(() => {
+    effect(() => {
         getPets().then(res => {
             setPets(res.data)
         })

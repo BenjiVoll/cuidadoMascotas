@@ -1,9 +1,8 @@
-import { useState } from 'react'
+import { useState as state} from 'react'
 import { getControlService, updateControlService } from '../../../data/controlServices'
 import { Button, Container, Heading, HStack, Stack } from '@chakra-ui/react'
 import InputForm from '../../../components/InputForm'
-import TextareaInput from '../../../components/TextareaInput'
-import { useRouter } from 'next/router'
+import router from 'next/router'
 import Swal from 'sweetalert2'
 
 export const getServerSideProps = async (context) => {
@@ -16,8 +15,7 @@ export const getServerSideProps = async (context) => {
 }
 
 const editar = ({ data }) => {
-    const [controlService, setControlService] = useState(data)
-    const router = useRouter()
+    const [controlService, setControlService] = state(data)
     const { controlServicio } = router.query
 
     const handleChange = (e) => {
