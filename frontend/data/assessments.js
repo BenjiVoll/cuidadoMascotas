@@ -7,7 +7,7 @@ const getAssessments = async () => {
 
 const createAssessment = (assessment) => {
     const response = axios.post(`${process.env.SERVIDOR}/assessment`, {
-        controlservice: controlservice.id,
+        controlservice: assessment.controlservice,
         point: assessment.point,
         comment: assessment.comment
     });

@@ -1,34 +1,44 @@
-import { useState } from 'react'
-import { Button, Container, Heading, HStack, Stack, Text } from '@chakra-ui/react'
-import { createAssessment } from '../../data/assessments'
-import InputForm from '../../components/InputForm'
-import TextareaInput from '../../components/TextareaInput'
+import { Button, Container, Stack, Heading } from '@chakra-ui/react'
+import Swal from 'sweetalert2'
 import { useRouter } from 'next/router'
+import { createAssessment } from '../../data/assessments'
 import { Formik } from 'formik'
+import FormInput from '../../components/FormInput'
 import assessmentValidation from '../../validations/assessmentValidation'
+import FormikError from '../../components/FormikError'
 
 const valoracion = () => {
-
-    const [assessment, setAssessment] = useState({
-        controlservice: '',
-        point: '',
-        comment: ''
-    })
-    const router = useRouter()
-
-
-    return (
-        <Container maxW="container.xl" mt={10}>
-            <Heading as={"h1"} size={"2xl"} textAlign={"center"}>Crear Valoración</Heading>
-            <Formik
-                initialValues={assessment}
-                validationSchema={assessmentValidation}
-                onSubmit={(values) => {
-                    createAssessment(values).then(res => {
-                        router.push("/valoraciones")
-                    })
-                }}
-            >
+	const router = useRouter()
+	return (
+		<Container maxW="container.md">
+			<Heading textAlign={"center"} my={10}>Crear Valoraciones</Heading>
+			<Formik
+				initialValues={{
+					point: '',
+					comment: ''
+				}}
+				validationSchema={assessmentValidation}
+				onSubmit={async (values) => {
+					try {
+						const response = await createAssessment(values)
+						if (response.status === 201) {
+							Swal.fire({
+								icon: 'success',
+								title: 'Valoracion creada',
+								text: 'La valoracion se creo correctamente!',
+							}).then(() => {
+								router.push('/valoraciones')
+							})
+						}
+					} catch (error) {
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: 'Algo salió mal!',
+						})
+					}
+				}}
+			>
                 {({
                     values,
                     errors,
@@ -38,25 +48,14 @@ const valoracion = () => {
                     handleSubmit
                 }) => (
                     <form onSubmit={handleSubmit} id="form">
-                        <Stack spacing={4} mt={10}>
-                            <HStack>
-                                <InputForm label="Puntos" handleChange={handleChange} name="point" placeholder="Puntaje del servicio" type="number" value={values.price} handleBlur={handleBlur} />
-                            </HStack>
-                            <HStack justify={"space-between"}>
-                                {touched.point && errors.point && (
-                                    <Text color={"red"}>{errors.point}</Text>
-                                )}
-                            </HStack>
-                            <InputForm label="Comentario" handleChange={handleChange} name="comment" placeholder="Comentario del servicio" value={values.comment} handleBlur={handleBlur} />
-                            {touched.comment && errors.comment && (
-                                <Text color={"red"}>{errors.comment}</Text>
-                            )}
-                        </Stack>
-                        <HStack>
-                            <Button colorScheme="blue" mt={10} mb={10} type={"submit"} >Crear</Button>
-                            <Button colorScheme="red" mt={10} mb={10} onClick={() => router.push('/valoraciones')}>Cancelar</Button>
-                        </HStack>
-                    </form>
+						<Stack>
+							<FormInput onChange={handleChange} placeholder="Puntaje del servicio" label="Puntaje" type={"number"} name={"point"} onBlur={handleBlur} value={values.point} />
+							{touched.point && errors.point && <FormikError error={errors.point} />}
+							<FormInput onChange={handleChange} placeholder="Comentario del servicio" label="Comentario" type={"text"} name={"comment"} onBlur={handleBlur} value={values.comment} />
+							{touched.comment && errors.comment && <FormikError error={errors.comment} />}
+						</Stack>
+						<Button colorScheme="teal" size="md" type="submit" my={5} onClick={handleSubmit}> Crear Producto </Button>
+					</form>
                 )}
             </Formik>
         </Container >
