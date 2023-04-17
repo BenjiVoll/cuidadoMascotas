@@ -1,3 +1,14 @@
+# Cuidado de mascotas.
+
+Si eres un amante de las mascotas, sabes lo importante que es asegurarte de que tus animales reciban el cuidado y la atención que merecen. Sin embargo, a veces puede ser difícil encontrar el tiempo para hacerlo todo, especialmente si vives en un condominio y tienes un horario ocupado.
+
+Es por eso que ofrecemos un servicio de cuidado de mascotas para condominios. Nos encargamos de alimentar, pasear y brindar atención a tus mascotas mientras estás fuera. Nuestros cuidadores están altamente capacitados y tienen una gran experiencia en el cuidado de mascotas, lo que significa que puedes estar seguro de que tus animales estarán en las mejores manos.
+
+Ya sea que necesites que cuidemos de tu perro, gato u otro tipo de mascota, estamos aquí para ayudarte. Nos tomamos muy en serio nuestra responsabilidad de cuidar de tus animales, y nos aseguramos de que estén cómodos, felices y seguros en todo momento.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Inicialización 
+
 El archivo .env debe contener los siguientes parametros:
 
 - PORT:3001
